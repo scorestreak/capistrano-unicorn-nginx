@@ -2,6 +2,10 @@ module Capistrano
   module DSL
     module NginxPaths
 
+      def nginx_conf_file
+        "#{fetch(:nginx_location)}/nginx.conf"
+      end
+
       def nginx_sites_available_file
         "#{fetch(:nginx_location)}/sites-available/#{fetch(:nginx_config_name)}"
       end
