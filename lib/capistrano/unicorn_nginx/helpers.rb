@@ -5,7 +5,7 @@ module Capistrano
     module Helpers
 
       def bundle_unicorn(*args)
-        SSHKit::Command.new(:bundle, :exec, :unicorn, args).to_command
+        SSHKit::Command.new("/usr/local/rvm/bin/rvm", "2.0.0-p451" "do" :bundle, :exec, :unicorn, args).to_command
       end
 
       def template(template_name)
