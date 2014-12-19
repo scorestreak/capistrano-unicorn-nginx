@@ -34,9 +34,9 @@ namespace :nginx do
   desc 'Setup nginx configuration'
   task :setup do
     on roles :web do
-      sudo_upload! template("nginx_conf.erb"), nginx_conf_file
-      # sudo_upload! template('nginx_conf.erb'), nginx_sites_available_file
-      # sudo :ln, '-fs', nginx_sites_available_file, nginx_sites_enabled_file
+      # sudo_upload! template("nginx_conf.erb"), nginx_conf_file
+      sudo_upload! template('nginx_conf.erb'), nginx_sites_available_file
+      sudo :ln, '-fs', nginx_sites_available_file, nginx_sites_enabled_file
     end
   end
 
