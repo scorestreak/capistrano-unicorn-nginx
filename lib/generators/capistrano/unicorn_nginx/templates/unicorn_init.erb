@@ -76,11 +76,19 @@ upgrade)
   echo >&2 "Couldn't upgrade, starting '$CMD' instead"
   run "$CMD"
   ;;
+status)
+  sig 0 && echo "running with pid `cat $PID`" && exit 0
+  echo stopped && exit 1
+;;
+kill_worker)
+  workersig QUIT $2 && exit 0
+  echo >&2 "Worker not running"
+;;
 reopen-logs)
   sig USR1
   ;;
 *)
-  echo >&2 "Usage: $0 <start|stop|restart|upgrade|force-stop|reopen-logs>"
+  echo >&2 "Usage: $0 <start|stop|restart|upgrade|status|kill_worker|force-stop|reopen-logs>"
   exit 1
   ;;
 esac
