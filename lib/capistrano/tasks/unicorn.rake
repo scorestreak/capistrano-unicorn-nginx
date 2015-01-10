@@ -8,7 +8,7 @@ namespace :load do
   task :defaults do
     set :unicorn_service, -> { "unicorn_#{fetch(:application)}_#{fetch(:stage)}" }
     set :templates_path, 'config/deploy/templates'
-    set :unicorn_initd, => { unicorn_initd_file }
+    set :unicorn_initd, -> { unicorn_initd_file }
     set :unicorn_pid, -> { unicorn_default_pid_file }
     set :unicorn_config, -> { unicorn_default_config_file }
     set :unicorn_workers, 2
