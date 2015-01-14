@@ -61,10 +61,6 @@ namespace :unicorn do
 end
 
 namespace :deploy do
-  task :restart do
-    execute fetch(:unicorn_initd), "upgrade"
-  end
-
   after :publishing, 'unicorn:restart'
 end
 
