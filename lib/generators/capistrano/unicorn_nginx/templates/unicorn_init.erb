@@ -30,6 +30,11 @@ oldsig () {
   test -s $OLD_PIN && kill -$1 `cat $OLD_PIN`
 }
 
+workersig () {
+  workerpid="$APP_ROOT/tmp/unicorn.$2.pid"
+  test -s "$workerpid" && kill -$1 `cat $workerpid`
+}
+
 run () {
   if [ "$(id -un)" = "$AS_USER" ]; then
     eval $1
